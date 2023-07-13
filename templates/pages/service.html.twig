@@ -1,0 +1,32 @@
+  {% extends 'base.html.twig' %} 
+
+{% block title %}Services
+{% endblock %}
+
+{% block body %}
+    
+        <section>
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Services</h2>
+                    <p>Nos services</p>
+                </div>
+            </div>
+            {% for service in services %}
+                <div class="container" data-aos="fade-up">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card" style="width: 18rem;">
+                                <img src="#" class="card-img-top" alt="Climatisation">
+                                <div class="card-body">
+                                    <h3>{{ service.title }}</h3>
+                                    <p class="card-text">{{ service.description }}</p>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    
+{% endblock %}

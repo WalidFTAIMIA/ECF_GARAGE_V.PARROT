@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+
+	{# accueil Section  #}
+	<section id="accueil" class="d-flex align-items-center">
+		<div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+			<div class="row">
+				<div class="col-lg-8">
+					<h1>Bienvenue chez
+						<span>V PARROT</span>
+					</h1>
+					<h2>
+						Une petite rivière nommée V.PARROT vous accuielle et vous fourni une large gamme de voiture et les régéliales services nécessaire
+					</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	{#  End Accueil  #}
+	<main id="main">
+		<!-- ======= About Section ======= -->
+		<section id="about" class="about">
+			<div class="container" data-aos="fade-up">
+				<div class="row">
+					<div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+						<div class="about-img">
+							<img src="../assets/images/about.jpg" alt="about"/>
+						</div>
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+						<h3>A propos</h3>
+						<p class="fst-italic">Bienvenue Chez V.PARROT</p>
+						<p>
+							Vincent Parrot, fort de ses 15 années d'expérience dans la
+							                réparation automobile, a ouvert son propre garage à Toulouse en
+							                2021.
+						</p>
+						<p>
+							Depuis 2 ans, il propose une large gamme de services: réparation
+							                de la carrosserie et de la mécanique des voitures ainsi que leur
+							                entretien régulier pour garantir leur performance et leur
+							                sécurité. De plus, le Garage V. Parrot met en vente des
+							                véhicules d'occasion afin d'accroître son chiffre d'affaires.
+						</p>
+						<p>
+							Vincent Parrot considère son atelier comme un véritable lieu de
+							                confiance pour ses clients et leurs voitures doivent, selon lui,
+							                à tout prix être entre de bonnes mains.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	{% endblock %}

@@ -21,19 +21,17 @@
 		<div class="container" data-aos="fade-up">
 			<div class="row">
             
+			{% for service in service %}
 				<div class="col-lg-4 col-md-6 mb-4">
 					<div class="card" style="width: 18rem">
-						<img src="../images/about.jpg" class="card-img-top" alt="..."/>
+						<img src={{ service.picture }} class="card-img-top" alt={{ service.picture }}/>
 						<div class="card-body">
-							<h5 class="card-title">Remplacement liquide</h5>
-							<ul class="card-list">
-								<li>Liquide de frein</li>
-								<li>Liquide de refroidisement</li>
-								<li>Adblue</li>
-							</ul>
+							 <h5 class="card-title">{{ service.title }}</h5>
+							<p>{{ service.description }}</p>
 						</div>
 					</div>
 				</div>
+			{% endfor %}
             
 			</div>
 		</div>

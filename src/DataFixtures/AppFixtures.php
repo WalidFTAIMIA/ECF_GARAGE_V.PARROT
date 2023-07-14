@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\CarsCatalogue;
+use App\Entity\Service;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Factory\CarsCatalogueFactory;
@@ -18,20 +19,25 @@ class AppFixtures extends Fixture
    
     public function load(ObjectManager $manager): void
     {
-        // $carscatalogue = new CarsCatalogue();
-        // $carscatalogue->setPictureCarsCatalogue('Picture');
-        // $carscatalogue ->setPrice('40000');
-        // $carscatalogue ->setTitle('Mercedes');
+         $carscatalogue = new CarsCatalogue();
+         $carscatalogue->setPictureCarsCatalogue('Picture');
+         $carscatalogue ->setPrice('40000');
+         $carscatalogue ->setTitle('Mercedes');
 
-        // $manager->persist($carscatalogue);
+         $manager->persist($carscatalogue);
         
-    
+        $service= new Service();
+        $service->setTitle('Pneu');
+        $service ->setDescription('Réparation des pneus');
         
-         CarsCatalogueFactory::createMany(1);
-         CarsFactory::createMany(10);
-         OpinionFactory::createMany(10);
-         UsersFactory::createMany(1);
-         ServiceFactory::createMany(10);
+        $manager->persist($service);
+
+        
+        //  CarsCatalogueFactory::createMany(1);
+        //  CarsFactory::createMany(10);
+        //  OpinionFactory::createMany(10);
+        //  UsersFactory::createMany(1);
+        //  ServiceFactory::createMany(10);
 
         
 

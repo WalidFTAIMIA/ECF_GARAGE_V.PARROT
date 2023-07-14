@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Cars;
 use App\Repository\CarsCatalogueRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

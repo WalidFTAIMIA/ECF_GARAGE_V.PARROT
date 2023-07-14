@@ -18,6 +18,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
+    
+
     public function __construct(
         private AdminUrlGenerator $adminUrlGenerator
     ) {
@@ -26,6 +28,7 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'app_dashboard')]
     public function index(): Response
     {
+        
         $url = $this->adminUrlGenerator
             ->setController(UsersCrudController::class)
             ->generateUrl();
@@ -70,7 +73,8 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
+        yield MenuItem::linkToRoute('Accueil', 'fa fa-home','app_home');
+        yield MenuItem::linkToDashboard('Tableau de bord', 'fa-solid fa-gauge');
         yield MenuItem::subMenu('Action', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Employée', 'fa-solid fa-user', Users::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Horaire d\'ouverture', 'fa-solid fa-clock', Times::class)->setAction(Crud::PAGE_NEW),

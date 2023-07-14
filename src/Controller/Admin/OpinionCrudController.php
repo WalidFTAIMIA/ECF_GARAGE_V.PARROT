@@ -2,24 +2,16 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Times;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use App\Entity\Opinion;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class TimesCrudController extends AbstractCrudController
+class OpinionCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Times::class;
+        return Opinion::class;
     }
 
-    public function configureCrud(Crud $crud): Crud
-    {
-       
-        return $crud
-            ->setEntityLabelInPlural('Horaire d\'ouverture')
-            ->setEntityLabelInSingular('Horaire d\'ouverture');
-    }
     /*
     public function configureFields(string $pageName): iterable
     {

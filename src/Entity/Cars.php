@@ -36,6 +36,9 @@ class Cars
     #[ORM\JoinColumn(nullable: false)]
     private ?carscatalogue $carscatalogue = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
+
  
 
     public function getId(): ?int
@@ -123,6 +126,18 @@ class Cars
     public function setCarscatalogue(?carscatalogue $carscatalogue): static
     {
         $this->carscatalogue = $carscatalogue;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): static
+    {
+        $this->picture = $picture;
 
         return $this;
     }

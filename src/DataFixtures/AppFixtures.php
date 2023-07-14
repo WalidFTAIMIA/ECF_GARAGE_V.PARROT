@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-
+use App\Entity\CarsCatalogue;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Factory\CarsCatalogueFactory;
@@ -15,19 +15,25 @@ use App\Factory\UsersFactory;
 
 class AppFixtures extends Fixture
 {
+   
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        // $carscatalogue = new CarsCatalogue();
+        // $carscatalogue->setPictureCarsCatalogue('Picture');
+        // $carscatalogue ->setPrice('40000');
+        // $carscatalogue ->setTitle('Mercedes');
+
+        // $manager->persist($carscatalogue);
         
     
         
-        CarsCatalogueFactory::createMany(1);
-        CarsFactory::createMany(10);
-        OpinionFactory::createMany(10);
-        UsersFactory::createMany(1);
-        ServiceFactory::createMany(10);
+         CarsCatalogueFactory::createMany(1);
+         CarsFactory::createMany(10);
+         OpinionFactory::createMany(10);
+         UsersFactory::createMany(1);
+         ServiceFactory::createMany(10);
 
+        
 
         $manager->flush();
     }

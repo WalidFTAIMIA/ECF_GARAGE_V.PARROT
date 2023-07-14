@@ -21,6 +21,12 @@ class CarsCatalogue
     #[ORM\OneToMany(mappedBy: 'carscatalogue', targetEntity: Cars::class)]
     private Collection $cars;
 
+    #[ORM\Column]
+    private ?float $price = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $title = null;
+
     public function __construct()
     {
         $this->cars = new ArrayCollection();
@@ -69,6 +75,30 @@ class CarsCatalogue
                 $car->setCarscatalogue(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
 
         return $this;
     }

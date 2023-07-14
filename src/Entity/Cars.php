@@ -36,8 +36,7 @@ class Cars
     #[ORM\JoinColumn(nullable: false)]
     private ?carscatalogue $carscatalogue = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cars')]
-    private ?visitors $visitors = null;
+ 
 
     public function getId(): ?int
     {
@@ -128,15 +127,5 @@ class Cars
         return $this;
     }
 
-    public function getVisitors(): ?visitors
-    {
-        return $this->visitors;
-    }
-
-    public function setVisitors(?visitors $visitors): static
-    {
-        $this->visitors = $visitors;
-
-        return $this;
-    }
+    
 }

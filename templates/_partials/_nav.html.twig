@@ -25,7 +25,7 @@
 		</nav>
 		{% if app.user %}
 			<li class="connexion-btn scrollto  d-lg-flex">
-				<a href="#" class="nav-link">Mon compte</a>
+				<a href="{{ path('app_dashboard') }}" class="nav-link">Mon compte</a>
 			</li>
 			<li class="connexion-btn scrollto  d-lg-flex">
 				<a href="{{ path('app_logout') }}" class="nav-link">Me déconnecter</a>

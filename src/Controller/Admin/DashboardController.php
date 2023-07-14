@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'dashboard')]
+    #[Route('/admin', name: 'app_dashboard')]
     public function index(): Response
     {
         return parent::index();

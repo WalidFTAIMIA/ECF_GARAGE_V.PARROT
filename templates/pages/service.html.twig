@@ -1,32 +1,43 @@
-  {% extends 'base.html.twig' %} 
+{% extends 'base.html.twig' %}
 
 {% block title %}Services
 {% endblock %}
 
 {% block body %}
-    
-        <section>
-            <div class="container" data-aos="fade-up">
-                <div class="section-title">
-                    <h2>Services</h2>
-                    <p>Nos services</p>
-                </div>
-            </div>
-            {% for service in services %}
-                <div class="container" data-aos="fade-up">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="card" style="width: 18rem;">
-                                <img src="#" class="card-img-top" alt="Climatisation">
-                                <div class="card-body">
-                                    <h3>{{ service.title }}</h3>
-                                    <p class="card-text">{{ service.description }}</p>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </section>
-    
+
+	<section id="services" class="d-flex align-items-center">
+		<div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+			<div class="row d-flex align-items-end">
+				<h2>Consultez nos services</h2>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container" data-aos="fade-up">
+			<div class="section-title">
+				<p class="d-flex justify-content-center">Nos services</p>
+			</div>
+		</div>
+		<div class="container" data-aos="fade-up">
+			<div class="row">
+            
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="card" style="width: 18rem">
+						<img src="../images/about.jpg" class="card-img-top" alt="..."/>
+						<div class="card-body">
+							<h5 class="card-title">Remplacement liquide</h5>
+							<ul class="card-list">
+								<li>Liquide de frein</li>
+								<li>Liquide de refroidisement</li>
+								<li>Adblue</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+            
+			</div>
+		</div>
+	</section>
+
+
 {% endblock %}

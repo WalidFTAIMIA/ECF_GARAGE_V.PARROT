@@ -27,13 +27,7 @@ class Opinion
     #[ORM\Column(length: 255)]
     private ?string $messageOpinion = null;
 
-    #[ORM\ManyToMany(targetEntity: visitors::class, inversedBy: 'opinions')]
-    private Collection $visitors;
-
-    public function __construct()
-    {
-        $this->visitors = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -88,27 +82,4 @@ class Opinion
         return $this;
     }
 
-    /**
-     * @return Collection<int, visitors>
-     */
-    public function getVisitors(): Collection
-    {
-        return $this->visitors;
-    }
-
-    public function addVisitor(visitors $visitor): static
-    {
-        if (!$this->visitors->contains($visitor)) {
-            $this->visitors->add($visitor);
-        }
-
-        return $this;
-    }
-
-    public function removeVisitor(visitors $visitor): static
-    {
-        $this->visitors->removeElement($visitor);
-
-        return $this;
-    }
 }

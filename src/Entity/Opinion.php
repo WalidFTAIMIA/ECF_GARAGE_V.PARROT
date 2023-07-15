@@ -27,6 +27,14 @@ class Opinion
     #[ORM\Column(length: 255)]
     private ?string $messageOpinion = null;
 
+    #[ORM\ManyToMany(targetEntity: Employee::class, mappedBy: 'opinion')]
+    private Collection $employees;
+
+    public function __construct()
+    {
+        $this->employees = new ArrayCollection();
+    }
+
     
 
     public function getId(): ?int
@@ -78,6 +86,33 @@ class Opinion
     public function setMessageOpinion(string $messageOpinion): static
     {
         $this->messageOpinion = $messageOpinion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Employee>
+     */
+    public function getEmployees(): Collection
+    {
+        return $this->employees;
+    }
+
+    public function addEmployee(Employee $employee): static
+    {
+        if (!$this->employees->contains($employee)) {
+            $this->employees->add($employee);
+            $employee->addOpinion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmployee(Employee $employee): static
+    {
+        if ($this->employees->removeElement($employee)) {
+            $employee->removeOpinion($this);
+        }
 
         return $this;
     }

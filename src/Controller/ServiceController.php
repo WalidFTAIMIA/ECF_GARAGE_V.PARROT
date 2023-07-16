@@ -15,7 +15,6 @@ class ServiceController extends AbstractController
         
         return $this->render('pages/service.html.twig', [
             'service'=>$serviceRepo->findAll()
-            
         ]);
     }
 }

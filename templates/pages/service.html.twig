@@ -24,7 +24,7 @@
 			{% for service in service %}
 				<div class="col-lg-4 col-md-6 mb-4">
 					<div class="card" style="width: 18rem">
-						<img src={{ service.picture }} class="card-img-top" alt={{ service.title }}/>
+						<img src="/images/{{ service.picture }}" class="card-img-top" alt={{ service.title }}/>
 						<div class="card-body">
 							<h5 class="card-title">{{ service.title }}</h5>
 							<p>{{ service.description }}</p>

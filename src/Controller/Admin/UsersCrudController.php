@@ -3,15 +3,26 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Users;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UsersCrudController extends AbstractCrudController
 {
+    public function __construct(
+        private UserPasswordHasherInterface $passwordHasher
+    ) 
+    {
+        
+    }
+
     public static function getEntityFqcn(): string
     {
         return Users::class;
@@ -30,8 +41,22 @@ class UsersCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('Email'),
-            TextField::new('Password'),
+            TextField::new('Password')
+                ->setFormType(PasswordType::class)
+                ->onlyOnForms(),
+            ChoiceField::new('roles')
+                ->allowMultipleChoices()
+                ->renderAsBadges([
+                    'ROLE_ADMIN' => 'success',
+                    'ROLE_EMPLOYER' => 'warning'
+                ])
+                ->setChoices([
+                    'Administrateur' => 'ROLE_ADMIN',
+                    'Employées' => 'ROLE_EMPLOYER'
+                ])
         ];
+
+        
     }
 
     public function configureActions(Actions $actions): Actions
@@ -52,4 +77,16 @@ class UsersCrudController extends AbstractCrudController
             });
     }
     
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        /** @var Users $users */
+        $users = $entityInstance;
+        $plainPassword = $users->getPassword();
+        $hashedPassword = $this->passwordHasher->hashPassword($users, $plainPassword);
+
+        $users->setPassword($hashedPassword);
+        $users->setRoles(["ROLE_EMPLOYER"]);
+        parent::persistEntity($entityManager , $entityInstance);
+
+    }
 }

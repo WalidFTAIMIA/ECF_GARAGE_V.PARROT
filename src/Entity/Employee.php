@@ -18,10 +18,10 @@ class Employee
     #[ORM\ManyToOne(inversedBy: 'employees')]
     private ?users $users = null;
 
-    #[ORM\ManyToMany(targetEntity: opinion::class, inversedBy: 'employees')]
+    #[ORM\ManyToMany(targetEntity: Opinion::class, inversedBy: 'employees')]
     private Collection $opinion;
 
-    #[ORM\ManyToMany(targetEntity: cars::class, inversedBy: 'employees')]
+    #[ORM\ManyToMany(targetEntity: Cars::class, inversedBy: 'employees')]
     private Collection $cars;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Employee
         return $this->opinion;
     }
 
-    public function addOpinion(opinion $opinion): static
+    public function addOpinion(Opinion $opinion): static
     {
         if (!$this->opinion->contains($opinion)) {
             $this->opinion->add($opinion);
@@ -64,7 +64,7 @@ class Employee
         return $this;
     }
 
-    public function removeOpinion(opinion $opinion): static
+    public function removeOpinion(Opinion $opinion): static
     {
         $this->opinion->removeElement($opinion);
 
@@ -79,7 +79,7 @@ class Employee
         return $this->cars;
     }
 
-    public function addCar(cars $car): static
+    public function addCar(Cars $car): static
     {
         if (!$this->cars->contains($car)) {
             $this->cars->add($car);
@@ -88,7 +88,7 @@ class Employee
         return $this;
     }
 
-    public function removeCar(cars $car): static
+    public function removeCar(Cars $car): static
     {
         $this->cars->removeElement($car);
 

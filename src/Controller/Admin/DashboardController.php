@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Cars;
 use App\Entity\Service;
 use App\Entity\Times;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -10,12 +11,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Users;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class DashboardController extends AbstractDashboardController
 {
     
@@ -25,6 +30,7 @@ class DashboardController extends AbstractDashboardController
     ) {
        
     }
+    
     #[Route('/admin', name: 'app_dashboard')]
     public function index(): Response
     {
@@ -73,14 +79,32 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        
         yield MenuItem::linkToRoute('Accueil', 'fa fa-home','app_home');
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa-solid fa-gauge');
-        yield MenuItem::subMenu('Action', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Employée', 'fa-solid fa-user', Users::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Horaire d\'ouverture', 'fa-solid fa-clock', Times::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Services', 'fa-solid fa-truck-fast', Service::class)->setAction(Crud::PAGE_NEW)
-        ]);
-        
+
+
+        if ($this->isGranted('ROLE_ADMIN'))
+        {
+            yield MenuItem::subMenu('Menu', 'fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Employée', 'fa-solid fa-user', Users::class),
+                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Horaire d\'ouverture', 'fa-solid fa-clock', Times::class),
+                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Services', 'fa-solid fa-truck-fast', Service::class),
+                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
+                
+            ]);
+            
+        }
+        if ($this->isGranted('ROLE_EMPLOYER'))
+        {
+            yield MenuItem::subMenu('Menu', 'fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Car','fa-solid fa-truck-fast', Cars::class),
+                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
+            ]);
+        }
         
     }
+
 }

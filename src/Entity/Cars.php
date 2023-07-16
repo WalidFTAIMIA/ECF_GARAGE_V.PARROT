@@ -36,7 +36,7 @@ class Cars
 
     #[ORM\ManyToOne(inversedBy: 'cars')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?carscatalogue $carscatalogue = null;
+    private ?CarsCatalogue $carscatalogue = null;
 
     #[ORM\Column(length: 255)]
     private ?string $picture = null;

@@ -26,7 +26,7 @@ class CarsCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('carsbrand', 'Marque'),
             TextField::new('carsmodel', 'Model'),
             NumberField::new('carskm'),
@@ -37,6 +37,9 @@ class CarsCrudController extends AbstractCrudController
                 ->setCurrency('EUR'),
             DateField::new('carsyear','Année'),
             TextField::new('carsenergy', 'Carburant'), 
+            ImageField::new('picture', 'Image')
+                ->setBasePath('images')
+                ->setUploadDir('public/images'),
         ];
     }
     

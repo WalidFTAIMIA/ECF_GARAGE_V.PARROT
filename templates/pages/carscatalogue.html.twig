@@ -1,20 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CarsCatalogueController!{% endblock %}
+{% block title %}Hello CarsCatalogueController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/walid/OneDrive/Bureau/ECF-GARAGE_V-PARROT - Copie/src/Controller/CarsCatalogueController.php'|file_link(0) }}">src/Controller/CarsCatalogueController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/walid/OneDrive/Bureau/ECF-GARAGE_V-PARROT - Copie/templates/cars_catalogue/index.html.twig'|file_link(0) }}">templates/cars_catalogue/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<!-- ======= accueil Section ======= -->
+	<section id="accueil" class="d-flex align-items-center">
+		<div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+			<div class="row">
+				<div class="col-lg-8">
+					<h1>Bienvenue chez
+						<span>V PARROT</span>
+					</h1>
+					<h2>
+						Une petite rivière nommée V.PARROT vous accuielle et vous fourni
+						        une large gamme de voiture et les régéliales services nécessaire
+					</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Accueil -->
+	<section class="cars">
+		<div class="container">
+			<div class="section-title d-flex justify-content-center">
+				<h2>Voiture d'occasion</h2>
+				<p>Notre gamme des voitures</p>
+			</div>
+			<div class="row">
+            {% for cars in cars %}
+				<div class="col-md-4">
+					<div class="car-wrap rounded">
+						<img src="/images/{{ cars.picture }}" class="img rounded d-flex align-items-end"/>
+						<div class="text">
+							<h2 class="mb-0">
+								<a href="car-single.html">{{ cars.carsBrand }}</a>
+							</h2>
+							<div class="d-flex mb-3">
+								<span class="cat"></span>
+								<p class="price ml-auto">{{ cars.carsPrice }} €</p>
+							</div>
+							<p class="d-flex mb-0 d-block">
+								<a href="#" class="sub-btn">Contact</a>
+								<a href="{{ path('app_cars')}}" class="sub-btn">Details</a>
+							</p>
+						</div>
+					</div>
+				</div>
+            {% endfor %} 
+			</div>
+		</div>
+	</section>
 {% endblock %}

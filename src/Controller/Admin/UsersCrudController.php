@@ -16,6 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UsersCrudController extends AbstractCrudController
 {
+    
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher
     ) 
@@ -27,6 +28,7 @@ class UsersCrudController extends AbstractCrudController
     {
         return Users::class;
     }
+
 
     public function configureCrud(Crud $crud): Crud
     {
@@ -77,6 +79,8 @@ class UsersCrudController extends AbstractCrudController
             });
     }
     
+    
+    
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         /** @var Users $users */
@@ -85,7 +89,6 @@ class UsersCrudController extends AbstractCrudController
         $hashedPassword = $this->passwordHasher->hashPassword($users, $plainPassword);
 
         $users->setPassword($hashedPassword);
-        $users->setRoles(["ROLE_EMPLOYER"]);
         parent::persistEntity($entityManager , $entityInstance);
 
     }

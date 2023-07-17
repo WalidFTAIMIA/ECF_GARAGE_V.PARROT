@@ -34,10 +34,6 @@ class Cars
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $carsYear = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cars')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?CarsCatalogue $carscatalogue = null;
-
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
@@ -128,17 +124,7 @@ class Cars
         return $this;
     }
 
-    public function getCarscatalogue(): ?carscatalogue
-    {
-        return $this->carscatalogue;
-    }
-
-    public function setCarscatalogue(?carscatalogue $carscatalogue): static
-    {
-        $this->carscatalogue = $carscatalogue;
-
-        return $this;
-    }
+    
 
     public function getPicture(): ?string
     {

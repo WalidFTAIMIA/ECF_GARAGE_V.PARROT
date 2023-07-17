@@ -20,6 +20,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+
+
 #[IsGranted('ROLE_ADMIN')]
 class DashboardController extends AbstractDashboardController
 {
@@ -60,6 +62,8 @@ class DashboardController extends AbstractDashboardController
         // return $this->render('some/path/my-dashboard.html.twig');
     }
 
+
+
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
@@ -77,6 +81,9 @@ class DashboardController extends AbstractDashboardController
     //      return Assets::new()->addCssFile('public/css/admin.css');
     //  }
 
+   
+  
+
     public function configureMenuItems(): iterable
     {
         
@@ -90,20 +97,23 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Employée', 'fa-solid fa-user', Users::class),
                 MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Horaire d\'ouverture', 'fa-solid fa-clock', Times::class),
-                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Times::class)->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Services', 'fa-solid fa-truck-fast', Service::class),
-                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Service::class)->setAction(Crud::PAGE_NEW),
+               
+                    MenuItem::linkToCrud('Car','fa-solid fa-truck-fast', Cars::class),
+                    MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Cars::class)->setAction(Crud::PAGE_NEW)
                 
             ]);
             
         }
-        if ($this->isGranted('ROLE_EMPLOYER'))
-        {
-            yield MenuItem::subMenu('Menu', 'fas fa-bars')->setSubItems([
-                MenuItem::linkToCrud('Car','fa-solid fa-truck-fast', Cars::class),
-                MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
-            ]);
-        }
+        // if ($this->isGranted('ROLE_EMPLOYER'))
+        // {
+        //     yield MenuItem::subMenu('Menu', 'fas fa-bars')->setSubItems([
+        //         MenuItem::linkToCrud('Car','fa-solid fa-truck-fast', Cars::class),
+        //         MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
+        //     ]);
+        // }
         
     }
 

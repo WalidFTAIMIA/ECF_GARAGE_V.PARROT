@@ -4,58 +4,48 @@
 {% endblock %}
 
 {% block body %}
-<section id="accueil" class="d-flex align-items-center">
-		<div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-			<div class="row">
-				<div class="col-lg-8">
-					<h1>connexion
-					</h1>
+<body>
+<main>
+	<section class="vh-100 connexion ">
+		<div class="row">
+			<div class="container cnx d-flex  align-items-center">
+				<div class="row" data-aos="zoom-in" data-aos-delay="100">
+					<h1 class="text-center">Connexion</h1>
+					<div class="container-fluid">
+						{% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+
+						{% if app.user %}
+							<div class="mb-3">
+								Vous êtes connecté(e) comme
+								{{ app.user.userIdentifier }},
+								<a href="{{ path('app_logout') }}">Me déconnecter</a>
+							</div>
+						{% endif %}
+						<form method="post" class="form-connexion">
+							<div class="form-outline mb-4">
+								<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control form-control-lg" placeholder="Votre mot de passe " autocomplete="email" required autofocus>
+								<label class="form-label" for="inputEmail">Email</label>
+							</div>
+							<div class="form-outline mb-3">
+								<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+								<label for="inputPassword" class="form-label">Mot de passe</label>
+							</div>
+							{% if csrf_token('authenticate') %}
+								<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+							{% endif %}
+							<div class="d-flex justify-content-center">
+								<button class="sub-connexion " type="submit">
+									Se connecter
+								</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-</section>
-<section class="container my-5 d-flex justify-content-center align-content-center" style="background:lawngreen">
-		<div class="row">
-			<div class="col">
-				<form method="post">
-					{% if error %}
-						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-					{% endif %}
-
-					{% if app.user %}
-						<div class="mb-3">
-							Vous êtes connecté(e) comme
-							{{ app.user.userIdentifier }},
-							<a href="{{ path('app_logout') }}">Me déconnecter</a>
-						</div>
-					{% endif %}
-
-					
-					<label for="inputEmail">Email</label>
-					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-					<label for="inputPassword">Mot de passe</label>
-					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-					{% if csrf_token('authenticate') %}
-						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
-					{% endif %}
-
-					{#
-					                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-					                See https://symfony.com/doc/current/security/remember_me.html
-					        
-					                <div class="checkbox mb-3">
-					                    <label>
-					                        <input type="checkbox" name="_remember_me"> Remember me
-					                    </label>
-					                </div>
-					            #}
-
-					<button class="btn btn-lg btn-primary mt-3" type="submit">
-						Me connecter
-					</button>
-				</form>
-			</div>
-		</div>
-</section>
+	</section>
+</main>
+</body>
 {% endblock %}

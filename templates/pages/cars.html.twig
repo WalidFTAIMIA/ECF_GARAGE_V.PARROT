@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CarsController!{% endblock %}
+
+{% block body %}
+ <!-- ======= accueil Section ======= -->
+ <section id="accueil" class="d-flex align-items-center">
+ <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+   <div class="row">
+     <div class="col-lg-8">
+       <h1>Bienvenue chez <span>V PARROT</span></h1>
+       <h2>
+         Une petite rivière nommée V.PARROT vous accuielle et vous fourni
+         une large gamme de voiture et les régéliales services nécessaire
+       </h2>
+     </div>
+   </div>
+ </div>
+</section>
+<!-- End Accueil -->
+<section class="cars-section cars-car-details">
+    <div class="container">
+    {% for cars in cars %}
+      <div class="row ">
+        <div class="car-details justify-content-center">
+            <img class="img rounded" src="/images/{{ cars.picture }}" alt="" >
+          
+            <div class="text text-center">
+              <span class="subheading">{{ cars.carsBrand}}</span>
+              <h1>{{ cars.carsModel }}</h1>
+            </div>
+          
+        </div>
+      </div>
+      <div class="row">
+        <h3 class="text text-center">Caractéristique</h3>
+        <div class="col-md d-flex align-self-stretch ">
+          <div class="media block-6 services">
+            <div class="media-body py-md-4">
+              <div class="d-flex mb-3 align-items-center">
+                <div class="text">
+                  <h3 class=" mb-0 pl-3">
+                    Prix
+                    <span>{{ cars.carsPrice }}</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md d-flex align-self-stretch">
+          <div class="media block-6 services">
+            <div class="media-body py-md-4">
+              <div class="d-flex mb-3 align-items-center">
+                
+                <div class="text">
+                  <h3 class=" mb-0 pl-3">
+                    Kilométrage
+                    <span>{{ cars.carsKm }}</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md d-flex align-self-stretch cars-animate">
+          <div class="media block-6 services">
+            <div class="media-body py-md-4">
+              <div class="d-flex mb-3 align-items-center">
+                
+                <div class="text">
+                  <h3 class=" mb-0 pl-3">
+                    Année
+                    <span>2023</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md d-flex align-self-stretch cars-animate">
+          <div class="media block-6 services">
+            <div class="media-body py-md-4">
+              <div class="d-flex mb-3 align-items-center">
+                
+                <div class="text">
+                  <h3 class=" mb-0 pl-3">
+                    Carburant
+                    <span>{{ cars.carsEnergy }}</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h3 class="text text-center">Description</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    {% endfor %}
+    </div>
+  </section>
+{% endblock %}

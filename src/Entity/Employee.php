@@ -16,7 +16,7 @@ class Employee
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'employees')]
-    private ?users $users = null;
+    private ?Users $users = null;
 
     #[ORM\ManyToMany(targetEntity: Opinion::class, inversedBy: 'employees')]
     private Collection $opinion;

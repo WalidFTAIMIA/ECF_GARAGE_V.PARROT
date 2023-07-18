@@ -15,7 +15,7 @@
 					<a class="nav-link scrollto" href="{{ path('app_service') }}">Prestation de service</a>
 				</li>
 				<li>
-					<a class="nav-link scrollto" href="#">Voiture d'occasion</a>
+					<a class="nav-link scrollto" href="{{ path('app_carscatalogue')}}">Voiture d'occasion</a>
 				</li>
 				<li>
 					<a class="nav-link scrollto" href="#">Contact</a>
@@ -24,7 +24,7 @@
 			<i class="bi bi-list mobile-nav-toggle"></i>
 		</nav>
 		{% if app.user %}
-			<li class="connexion-btn scrollto  d-lg-flex">
+			<li class="connexion-btn scrollto d-lg-flex">
 				<a href="{{ path('app_dashboard') }}" class="nav-link">Mon compte</a>
 			</li>
 			<li class="connexion-btn scrollto  d-lg-flex">

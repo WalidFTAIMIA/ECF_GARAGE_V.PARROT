@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Cars;
+use App\Entity\Opinion;
 use App\Entity\Service;
 use App\Entity\Times;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -62,7 +63,7 @@ class DashboardController extends AbstractDashboardController
         // return $this->render('some/path/my-dashboard.html.twig');
     }
 
-
+    
 
     public function configureDashboard(): Dashboard
     {
@@ -107,13 +108,15 @@ class DashboardController extends AbstractDashboardController
             ]);
             
         }
-        // if ($this->isGranted('ROLE_EMPLOYER'))
-        // {
-        //     yield MenuItem::subMenu('Menu', 'fas fa-bars')->setSubItems([
-        //         MenuItem::linkToCrud('Car','fa-solid fa-truck-fast', Cars::class),
-        //         MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Users::class)->setAction(Crud::PAGE_NEW),
-        //     ]);
-        // }
+        // if ($this->isGranted(['ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH']))
+        {
+             yield MenuItem::subMenu('Menu', 'fas fa-bars')->setSubItems([
+                 MenuItem::linkToCrud('Car','fa-solid fa-truck-fast', Cars::class),
+                 MenuItem::linkToCrud('Ajouter', 'fas fa-plus',  Cars::class)->setAction(Crud::PAGE_NEW),
+
+             ]);
+            yield MenuItem::linkToCrud('Avis Client', 'fas fa-comment', Opinion::class);
+         }
         
     }
 

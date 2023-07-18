@@ -12,29 +12,29 @@ class Opinion
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+     #[ORM\Column(nullable: true)]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
     private ?string $nameOpinion = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(nullable: true)]
     private ?string $emailOpinion = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $phoneOpinion = null;
 
     #[ORM\Column(length: 255)]
     private ?string $messageOpinion = null;
 
-    #[ORM\ManyToMany(targetEntity: Employee::class, mappedBy: 'opinion')]
-    private Collection $employees;
 
-    public function __construct()
-    {
-        $this->employees = new ArrayCollection();
+    #[ORM\ManyToOne(inversedBy: 'opinions')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Users $users = null;
+
+    public function __toString(){
+        return $this->nameOpinion;
     }
-
     
 
     public function getId(): ?int
@@ -90,31 +90,19 @@ class Opinion
         return $this;
     }
 
-    /**
-     * @return Collection<int, Employee>
-     */
-    public function getEmployees(): Collection
+
+    public function getUsers(): ?Users
     {
-        return $this->employees;
+        return $this->users;
     }
 
-    public function addEmployee(Employee $employee): static
+    public function setUsers(?Users $users): static
     {
-        if (!$this->employees->contains($employee)) {
-            $this->employees->add($employee);
-            $employee->addOpinion($this);
-        }
+        $this->users = $users;
 
         return $this;
     }
 
-    public function removeEmployee(Employee $employee): static
-    {
-        if ($this->employees->removeElement($employee)) {
-            $employee->removeOpinion($this);
-        }
-
-        return $this;
-    }
+    
 
 }

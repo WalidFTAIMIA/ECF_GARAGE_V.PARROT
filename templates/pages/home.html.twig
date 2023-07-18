@@ -1,62 +1,105 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil
+{% block title %}
+    Accueil
 {% endblock %}
 
 {% block body %}
-	<!-- ======= accueil Section ======= -->
-	<section id="accueil" class="d-flex align-items-center">
-		<div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-			<div class="row">
-				<div class="col-lg-8">
-					<h1>Bienvenue chez
-						<span>V PARROT</span>
-					</h1>
-					<h2>
-						Une petite rivière nommée V.PARROT vous accuielle et vous fourni
-								 une large gamme de voiture et les régéliales services nécessaire
-					</h2>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Accueil -->
+    <!-- ======= accueil Section ======= -->
+    <section id="accueil" class="d-flex align-items-center">
+        <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>
+                        Bienvenue chez
+                        <span>
+                            V PARROT
+                        </span>
+                    </h1>
+                    <h2>
+                        Une petite rivière nommée V.PARROT vous accueille et vous fournit une large gamme de voitures et les services nécessaires.
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Accueil -->
+    <main id="main">
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="about-img">
+                            <img src="images/about.jpg" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                        <h3>
+                            A propos
+                        </h3>
+                        <p class="fst-italic">
+                            Bienvenue chez V.PARROT
+                        </p>
+                        <p>
+                            Vincent Parrot, fort de ses 15 années d'expérience dans la vente et la réparation de voitures, a ouvert V.PARROT en 2021.
+                        </p>
+                        <p>
+                            Depuis 2 ans, il propose une large gamme de services : réparation, entretien et vente de véhicules d'occasion afin d'accroître son chiffre d'affaires.
+                        </p>
+                        <p>
+                            Vincent Parrot considère son atelier comme un véritable lieu de confiance où les clients peuvent se sentir entre de bonnes mains.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End About Section -->
+        <!-- ======= Testimonials Section ======= -->
+        <section id="testimonials" class="testimonials">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title d-flex justify-content-center">
+                    <h2>Avis Clients</h2>
+                    <p>Ce qu'ils disent de nous</p>
+                </div>
 
-	<main
-		id="main">
-		<!-- ======= About Section ======= -->
-		<section id="about" class="about">
-			<div class="container" data-aos="fade-up">
-				<div class="row">
-					<div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
-						<div class="about-img">
-							<img src="images/about.jpg" alt=""/>
-						</div>
-					</div>
-					<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-						<h3>A propos</h3>
-						<p class="fst-italic">Bienvenue Chez V.PARROT</p>
-						<p>
-							Vincent Parrot, fort de ses 15 années d'expérience dans la
-									   réparation automobile, a ouvert son propre garage à Toulouse en
-									   2021.
-						</p>
-						<p>
-							Depuis 2 ans, il propose une large gamme de services: réparation
-									   de la carrosserie et de la mécanique des voitures ainsi que leur
-									   entretien régulier pour garantir leur performance et leur
-									   sécurité. De plus, le Garage V. Parrot met en vente des
-									   véhicules d'occasion afin d'accroître son chiffre d'affaires.
-						</p>
-						<p>
-							Vincent Parrot considère son atelier comme un véritable lieu de
-									   confiance pour ses clients et leurs voitures doivent, selon lui,
-									   à tout prix être entre de bonnes mains.
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End About Section -->
-	</main>
+                <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+                    <div class="swiper-wrapper">
+                        {% for opinion in opinions %}
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                        {{ opinion.messageOpinion }}
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                    <h3>{{ opinion.nameOpinion }}</h3>
+                                    <h4>Directeur</h4>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="container my-5 py-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 col-lg-10 col-xl-8">
+                        <form action="{{ path('app_opinion') }}" method="POST">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nameOpinion" placeholder="Votre Nom">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="messageOpinion" rows="4" placeholder="Votre Avis"></textarea>
+                            </div>
+                            <div class="float-end mt-2 pt-1">
+                                <button type="submit" class="sub-btn">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Testimonials Section -->
+    </main>
 {% endblock %}

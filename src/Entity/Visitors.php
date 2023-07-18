@@ -24,20 +24,10 @@ class Visitors
     #[ORM\Column]
     private ?int $phoneVisitors = null;
 
-    #[ORM\OneToMany(mappedBy: 'visitors', targetEntity: Cars::class)]
-    private Collection $cars;
 
-    #[ORM\ManyToMany(targetEntity: Opinion::class, mappedBy: 'visitors')]
-    private Collection $opinions;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pictureVisitors = null;
 
-   
-
-    public function __construct()
-    {
-        $this->cars = new ArrayCollection();
-        $this->opinions = new ArrayCollection();
-        
-    }
 
     public function getId(): ?int
     {
@@ -80,59 +70,17 @@ class Visitors
         return $this;
     }
 
-    /**
-     * @return Collection<int, Cars>
-     */
-    public function getCars(): Collection
+
+    
+
+    public function getPictureVisitors(): ?string
     {
-        return $this->cars;
+        return $this->pictureVisitors;
     }
 
-    public function addCar(Cars $car): static
+    public function setPictureVisitors(?string $pictureVisitors): static
     {
-        if (!$this->cars->contains($car)) {
-            $this->cars->add($car);
-            $car->setVisitors($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCar(Cars $car): static
-    {
-        if ($this->cars->removeElement($car)) {
-            // set the owning side to null (unless already changed)
-            if ($car->getVisitors() === $this) {
-                $car->setVisitors(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Opinion>
-     */
-    public function getOpinions(): Collection
-    {
-        return $this->opinions;
-    }
-
-    public function addOpinion(Opinion $opinion): static
-    {
-        if (!$this->opinions->contains($opinion)) {
-            $this->opinions->add($opinion);
-            $opinion->addVisitor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOpinion(Opinion $opinion): static
-    {
-        if ($this->opinions->removeElement($opinion)) {
-            $opinion->removeVisitor($this);
-        }
+        $this->pictureVisitors = $pictureVisitors;
 
         return $this;
     }

@@ -23,7 +23,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(type: 'json', length: 180)]
-    private ?array $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
@@ -34,11 +34,20 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Employee::class)]
     private Collection $employees;
 
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Opinion::class)]
+    private Collection $opinions;
+
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
+        $this->opinions = new ArrayCollection();
+        
     }
-
+    
+    public function __toString(){
+        return $this->email;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -138,4 +147,35 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Opinion>
+     */
+    public function getOpinions(): Collection
+    {
+        return $this->opinions;
+    }
+
+    public function addOpinion(Opinion $opinion): static
+    {
+        if (!$this->opinions->contains($opinion)) {
+            $this->opinions->add($opinion);
+            $opinion->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinion(Opinion $opinion): static
+    {
+        if ($this->opinions->removeElement($opinion)) {
+            // set the owning side to null (unless already changed)
+            if ($opinion->getUsers() === $this) {
+                $opinion->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -24,6 +24,9 @@ class Employee
     #[ORM\ManyToMany(targetEntity: Cars::class, inversedBy: 'employees')]
     private Collection $cars;
 
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->opinion = new ArrayCollection();
@@ -91,6 +94,18 @@ class Employee
     public function removeCar(Cars $car): static
     {
         $this->cars->removeElement($car);
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

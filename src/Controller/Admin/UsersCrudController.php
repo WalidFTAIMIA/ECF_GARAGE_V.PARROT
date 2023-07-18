@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -29,7 +30,7 @@ class UsersCrudController extends AbstractCrudController
         return Users::class;
     }
 
-
+    
     public function configureCrud(Crud $crud): Crud
     {
        
@@ -60,7 +61,7 @@ class UsersCrudController extends AbstractCrudController
 
         
     }
-
+    
     public function configureActions(Actions $actions): Actions
     {
         return $actions 

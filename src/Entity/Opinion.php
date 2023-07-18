@@ -32,6 +32,12 @@ class Opinion
     #[ORM\JoinColumn(nullable: true)]
     private ?Users $users = null;
 
+    #[ORM\Column]
+    private ?bool $approvedOpinion = null;
+
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $occupationOpinion = null;
+
     public function __toString(){
         return $this->nameOpinion;
     }
@@ -99,6 +105,30 @@ class Opinion
     public function setUsers(?Users $users): static
     {
         $this->users = $users;
+
+        return $this;
+    }
+
+    public function isApprovedOpinion(): ?bool
+    {
+        return $this->approvedOpinion;
+    }
+
+    public function setApprovedOpinion(bool $approvedOpinion): static
+    {
+        $this->approvedOpinion = $approvedOpinion;
+
+        return $this;
+    }
+
+    public function getOccupationOpinion(): ?string
+    {
+        return $this->occupationOpinion;
+    }
+
+    public function setOccupationOpinion(?string $occupationOpinion): static
+    {
+        $this->occupationOpinion = $occupationOpinion;
 
         return $this;
     }

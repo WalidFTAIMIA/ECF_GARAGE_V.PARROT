@@ -8,14 +8,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class OpinionController extends AbstractController
 {
     private $entityManager;
+    private $authorizationChecker;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->entityManager = $entityManager;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     #[Route('/pages/opinion', name: 'app_opinion')]
@@ -28,9 +31,11 @@ class OpinionController extends AbstractController
         $opinion->setNameOpinion($nameOpinion);
         $opinion->setMessageOpinion($messageOpinion);
 
-        // Vérifier si un utilisateur est connecté
-        if ($this->getUser()) {
-            $opinion->setUsers($this->getUser());
+        // Vérifier si l'utilisateur connecté a le rôle d'administrateur
+        if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+            $opinion->setApprovedOpinion(true);
+        } else {
+            $opinion->setApprovedOpinion(false);
         }
 
         // Enregistrer l'opinion dans la base de données
@@ -40,4 +45,5 @@ class OpinionController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 }
+
 

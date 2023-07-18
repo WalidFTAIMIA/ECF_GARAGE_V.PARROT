@@ -40,6 +40,9 @@ class Cars
     #[ORM\ManyToMany(targetEntity: Employee::class, mappedBy: 'cars')]
     private Collection $employees;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $descriptionCars = null;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
@@ -161,6 +164,18 @@ class Cars
         if ($this->employees->removeElement($employee)) {
             $employee->removeCar($this);
         }
+
+        return $this;
+    }
+
+    public function getDescriptionCars(): ?string
+    {
+        return $this->descriptionCars;
+    }
+
+    public function setDescriptionCars(?string $descriptionCars): static
+    {
+        $this->descriptionCars = $descriptionCars;
 
         return $this;
     }

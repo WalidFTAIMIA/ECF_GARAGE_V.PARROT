@@ -18,11 +18,6 @@ class Opinion
     #[ORM\Column(length: 100)]
     private ?string $nameOpinion = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $emailOpinion = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $phoneOpinion = null;
 
     #[ORM\Column(length: 255)]
     private ?string $messageOpinion = null;
@@ -35,8 +30,7 @@ class Opinion
     #[ORM\Column]
     private ?bool $approvedOpinion = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
-    private ?string $occupationOpinion = null;
+
 
     public function __toString(){
         return $this->nameOpinion;
@@ -60,29 +54,9 @@ class Opinion
         return $this;
     }
 
-    public function getEmailOpinion(): ?string
-    {
-        return $this->emailOpinion;
-    }
+    
 
-    public function setEmailOpinion(string $emailOpinion): static
-    {
-        $this->emailOpinion = $emailOpinion;
-
-        return $this;
-    }
-
-    public function getPhoneOpinion(): ?int
-    {
-        return $this->phoneOpinion;
-    }
-
-    public function setPhoneOpinion(int $phoneOpinion): static
-    {
-        $this->phoneOpinion = $phoneOpinion;
-
-        return $this;
-    }
+    
 
     public function getMessageOpinion(): ?string
     {
@@ -121,17 +95,6 @@ class Opinion
         return $this;
     }
 
-    public function getOccupationOpinion(): ?string
-    {
-        return $this->occupationOpinion;
-    }
-
-    public function setOccupationOpinion(?string $occupationOpinion): static
-    {
-        $this->occupationOpinion = $occupationOpinion;
-
-        return $this;
-    }
 
     
 

@@ -31,23 +31,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Employee::class)]
-    private Collection $employees;
-
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Opinion::class)]
     private Collection $opinions;
 
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Times::class)]
+    private Collection $Times;
 
     public function __construct()
     {
-        $this->employees = new ArrayCollection();
         $this->opinions = new ArrayCollection();
-        
+        $this->Times = new ArrayCollection();
     }
-    
-    public function __toString(){
-        return $this->email;
-    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -58,7 +53,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -87,7 +82,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -102,7 +97,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -119,36 +114,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Employee>
-     */
-    public function getEmployees(): Collection
-    {
-        return $this->employees;
-    }
-
-    public function addEmployee(Employee $employee): static
-    {
-        if (!$this->employees->contains($employee)) {
-            $this->employees->add($employee);
-            $employee->setUsers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEmployee(Employee $employee): static
-    {
-        if ($this->employees->removeElement($employee)) {
-            // set the owning side to null (unless already changed)
-            if ($employee->getUsers() === $this) {
-                $employee->setUsers(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Opinion>
      */
     public function getOpinions(): Collection
@@ -156,7 +121,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->opinions;
     }
 
-    public function addOpinion(Opinion $opinion): static
+    public function addOpinion(Opinion $opinion): self
     {
         if (!$this->opinions->contains($opinion)) {
             $this->opinions->add($opinion);
@@ -166,7 +131,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeOpinion(Opinion $opinion): static
+    public function removeOpinion(Opinion $opinion): self
     {
         if ($this->opinions->removeElement($opinion)) {
             // set the owning side to null (unless already changed)
@@ -178,4 +143,33 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return Collection<int, Times>
+     */
+    public function getTimes(): Collection
+    {
+        return $this->Times;
+    }
+
+    public function addTime(Times $time): static
+    {
+        if (!$this->Times->contains($time)) {
+            $this->Times->add($time);
+            $time->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTime(Times $time): static
+    {
+        if ($this->Times->removeElement($time)) {
+            // set the owning side to null (unless already changed)
+            if ($time->getUsers() === $this) {
+                $time->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
 }

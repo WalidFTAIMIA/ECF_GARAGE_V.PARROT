@@ -680,10 +680,13 @@ section {
 #services {
 	width: 100%;
 	height: 100vh;
-	background: url("../images/bg_2.jpg") top center;
+	background: url("../images/Mécanique.jpg") top center;
 	background-size: cover;
 	position: relative;
 	padding: 0;
+}
+#sevices h1{
+	color: #1089ff;
 }
 
 .card-title {
@@ -916,20 +919,15 @@ section {
 /*--------------------------------------------------------------
 # Page Connexion
 --------------------------------------------------------------*/
-
-
-
-.connexion {
-	
-	background: url("../images/bg_2.jpg") center center;
+#connexion {
+	width: 100%;
+	height: 100vh;
+	background: url("../images/connexion") top center;
 	background-size: cover;
 	position: relative;
-	padding: 80px 0;
-	color: white;
-	position: relative;
-	transition: .5s;
-	
+	padding: 0;
 }
+
 .connexion:before {
 	content: "";
 	background: rgba(0, 0, 0, 0.8);
@@ -939,9 +937,6 @@ section {
 	left: 0;
 	right: 0;
 }
-
-
-
 
 .form-connexion
 {
@@ -1004,10 +999,6 @@ section {
 	font-weight: bold;
 }
 
-.sub-connexion:hover {
-	background: #4DE240;
-	color: #fff;
-}
 
 @media (max-width: 992px) {
 	.sub-connexion {

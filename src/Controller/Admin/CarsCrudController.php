@@ -40,6 +40,7 @@ class CarsCrudController extends AbstractCrudController
             ImageField::new('picture', 'Image')
                 ->setBasePath('images')
                 ->setUploadDir('public/images'),
+            TextField::new('descriptionCars', 'Description'),
         ];
     }
     

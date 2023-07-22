@@ -46,4 +46,3 @@ class OpinionController extends AbstractController
     }
 }
 
-

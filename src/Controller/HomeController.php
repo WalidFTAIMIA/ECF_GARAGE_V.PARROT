@@ -17,7 +17,7 @@ class HomeController extends AbstractController
         $openingHours = $timesRepo->findAll();
 
 
-        return $this->render('pages/home.html.twig', [
+        return $this->render('pages/accueil/home.html.twig', [
             'opinions' => $approvedOpinions,
             'openingHours' => $openingHours,
         ]);

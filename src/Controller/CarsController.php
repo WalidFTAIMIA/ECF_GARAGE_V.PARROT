@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CarsRepository;
+use App\Repository\TimesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,24 +11,29 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarsController extends AbstractController
 {
     #[Route('/cars', name: 'app_carscatalogue', methods: ['GET'])]
-    public function index(CarsRepository $carsRepository): Response
+    public function index(CarsRepository $carsRepository, TimesRepository $timesRepo): Response
     {
-        return $this->render('pages/carscatalogue.html.twig', [
+        $openingHours = $timesRepo->findAll();
+
+        return $this->render('pages/cars/carscatalogue.html.twig', [
             'cars' => $carsRepository->findAll(),
+            'openingHours' => $openingHours,
         ]);
     }
 
     #[Route('/cars/{id}', name: 'app_cars', methods: ['GET'])]
-    public function show(CarsRepository $carsRepository, int $id): Response
+    public function show(CarsRepository $carsRepository,TimesRepository $timesRepo ,int $id): Response
     {
         $car = $carsRepository->find($id);
+        $openingHours = $timesRepo->findAll();
 
         if (!$car) {
             throw $this->createNotFoundException('La voiture n\'existe pas.');
         }
 
-        return $this->render('pages/cars.html.twig', [
-            'car' => $car
+        return $this->render('pages/cars/cars.html.twig', [
+            'car' => $car,
+            'openingHours' => $openingHours
         ]);
     }
 }

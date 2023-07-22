@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services{% endblock %}
+
+{% block body %}
+
+<section id="services" class="d-flex align-items-center justify-content-center">
+    <div class="container text-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>
+                    Bienvenue chez
+                    <span>
+                        V PARROT
+                    </span>
+                </h1>
+                <h2>
+                    Faites défiler la page vers le bas pour accéder à nos services.
+                </h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <p class="text-center">Nos services</p>
+        </div>
+    </div>
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card" style="width: 18rem">
+                    <img src="/images/{{ service.picture }}" class="card-img-top" alt="{{ service.title }}" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <ul class="card-list">
+                            {% set elements = service.description|split(',') %}
+                            {% for element in elements %}
+                            <li>{{ element|trim }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

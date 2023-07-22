@@ -18,21 +18,22 @@
 					<a class="nav-link scrollto" href="{{ path('app_carscatalogue')}}">Voiture d'occasion</a>
 				</li>
 				<li>
-					<a class="nav-link scrollto" href="#">Contact</a>
+					<a class="nav-link scrollto" href="{{ path('app_contact')}}">Contact</a>
 				</li>
+				{% if app.user %}
+			<li class="connexion-btn scrollto d-lg-flex">
+				<a href="{{ path('app_dashboard') }}" class="nav-link text-center">Mon compte</a>
+			</li>
+			<li class="connexion-btn scrollto  d-lg-flex">
+				<a href="{{ path('app_logout') }}" class="nav-link text-center">Me déconnecter</a>
+			</li>
+		{% else %}
+			<a href="{{ path('app_login') }}" class="connexion-btn scrollto d-lg-flex text-center">Connexion</a>
+		{% endif %}
 			</ul>
 			<i class="bi bi-list mobile-nav-toggle"></i>
 		</nav>
-		{% if app.user %}
-			<li class="connexion-btn scrollto d-lg-flex">
-				<a href="{{ path('app_dashboard') }}" class="nav-link">Mon compte</a>
-			</li>
-			<li class="connexion-btn scrollto  d-lg-flex">
-				<a href="{{ path('app_logout') }}" class="nav-link">Me déconnecter</a>
-			</li>
-		{% else %}
-			<a href="{{ path('app_login') }}" class="connexion-btn scrollto d-lg-flex">Connexion</a>
-		{% endif %}
+		
 	</div>
 
 </header>

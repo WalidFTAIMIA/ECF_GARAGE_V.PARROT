@@ -2,9 +2,8 @@
 
 namespace App\Controller\Admin;
 
-namespace App\Controller\Admin;
-
 use App\Entity\Cars;
+use App\Entity\Contact;
 use App\Entity\Opinion;
 use App\Entity\Service;
 use App\Entity\Times;
@@ -18,7 +17,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -51,8 +49,8 @@ class DashboardController extends AbstractDashboardController
             return $this->redirect($url);
         }
 
-        // Si aucun des rôles ne correspond, redirection vers la page d'accueil par défaut d'EasyAdmin
-        return $this->redirectToRoute('easyadmin');
+        // Si aucun des rôles ne correspond, redirection vers la page de  connexion
+        return $this->redirectToRoute('app_login');
     }
 
     public function configureDashboard(): Dashboard
@@ -78,14 +76,16 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Car', 'fa-solid fa-truck-fast', Cars::class),
                 MenuItem::linkToCrud('Ajouter Car', 'fas fa-plus', Cars::class)->setAction(Crud::PAGE_NEW),
             ]);
+            
         }
 
         if ($this->isGranted('ROLE_EMPLOYER')) {
-            yield MenuItem::subMenu('Menu (Employeur)', 'fas fa-bars')->setSubItems([
+            yield MenuItem::subMenu('Menu (Employées)', 'fas fa-bars')->setSubItems([
                 MenuItem::linkToCrud('Car', 'fa-solid fa-truck-fast', Cars::class),
                 MenuItem::linkToCrud('Ajouter Car', 'fas fa-plus', Cars::class)->setAction(Crud::PAGE_NEW),
             ]);
-            yield MenuItem::linkToCrud('Avis Client', 'fas fa-comment', Opinion::class);
         }
-    }
+        yield MenuItem::linkToCrud('Avis Client', 'fas fa-comment', Opinion::class);
+        yield MenuItem::linkToCrud('Message', 'fa-solid fa-message', Contact::class);
+    }   
 }

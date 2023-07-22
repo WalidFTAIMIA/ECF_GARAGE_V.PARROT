@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\TimesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,19 +11,17 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     #[Route(path: '/connexion', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils,TimesRepository $timesRepo): Response
     {
-        // vérifier si un utilisateur est connecte et rediriger vers une autre page
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
-        // get the login error if there is one
+       
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+        $openingHours = $timesRepo->findAll();
 
-        return $this->render('pages/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('pages/security/login.html.twig', [
+            'last_username' => $lastUsername, 'error' => $error,
+            'openingHours' => $openingHours,
+        ]);
     }
 
     #[Route(path: '/déconnexion', name: 'app_logout')]

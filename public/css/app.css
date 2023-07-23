@@ -167,30 +167,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Top Bar
---------------------------------------------------------------*/
-#topbar {
-	height: 40px;
-	font-size: 14px;
-	transition: all 0.5s;
-	z-index: 996;
-}
-
-#topbar.topbar-scrolled {
-	top: -40px;
-}
-
-#topbar .contact-info i {
-	font-style: normal;
-	color: #4DE240;
-}
-
-#topbar .contact-info i span {
-	padding-left: 5px;
-	color: #fff;
-}
-
-/*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 #header {
@@ -680,8 +656,10 @@ section {
 	position: relative;
 	padding: 0;
 }
-#sevices h1{
-	color: #fff;
+#services h2 {
+	color: #eee;
+	margin-bottom: 10px 0 0 0;
+	font-size: 22px;
 }
 
 .card-title {
@@ -712,8 +690,10 @@ section {
 	padding: 0;
 }
 
-#carscatalogue p{
-	color: #fff;
+#carscatalogue h2 {
+	color: #eee;
+	margin-bottom: 10px 0 0 0;
+	font-size: 22px;
 }
 .car-wrap {
 	margin-bottom: 40px;
@@ -781,10 +761,11 @@ section {
 	position: relative;
 	padding: 0;
 }
-#cars p{
-	color: #fff;
+#cars h2 {
+	color: #eee;
+	margin-bottom: 10px 0 0 0;
+	font-size: 22px;
 }
-
 
 .cars-car-details .services .media-body .text h3 {
 	font-size: 14px !important;
@@ -957,8 +938,10 @@ section {
 	position: relative;
 	padding: 0;
 }
-#connexion h1 {
-	color: #fff;
+#connexion h2 {
+	color: #eee;
+	margin-bottom: 10px 0 0 0;
+	font-size: 22px;
 }
 
 .connexion:before {

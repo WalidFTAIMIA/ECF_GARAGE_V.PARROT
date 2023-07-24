@@ -650,12 +650,22 @@ section {
 
 #services {
 	width: 100%;
-	height: 100vh;
+	height: 80vh;
 	background: url("../images/Mécanique.jpg") top center;
 	background-size: cover;
 	position: relative;
 	padding: 0;
 }
+#services:before {
+	content: "";
+	background: rgba(0, 0, 0, 0.8);
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
 #services h2 {
 	color: #eee;
 	margin-bottom: 10px 0 0 0;
@@ -683,12 +693,23 @@ section {
 #carscatalogue {
 	
 	width: 100%;
-	height: 100vh;
+	height: 80vh;
 	background: url("../images/bradley-dunn-qijkjkJm63c-unsplash.jpg") top center;
 	background-size: cover;
 	position: relative;
 	padding: 0;
 }
+
+#carscatalogue:before {
+	content: "";
+	background: rgba(0, 0, 0, 0.8);
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
 
 #carscatalogue h2 {
 	color: #eee;
@@ -755,11 +776,20 @@ section {
 --------------------------------------------------------------*/
 #cars{
 	width: 100%;
-	height: 100vh;
+	height: 80vh;
 	background: url("../images/bg_2.jpg") top center;
 	background-size: cover;
 	position: relative;
 	padding: 0;
+}
+#cars:before {
+	content: "";
+	background: rgba(0, 0, 0, 0.8);
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 #cars h2 {
 	color: #eee;
@@ -814,18 +844,29 @@ section {
 
 
 /*--------------------------------------------------------------
-# Contact
+# Contact page
 --------------------------------------------------------------*/
 #contacts {
 	width: 100%;
-	height: 100vh;
+	height: 70vh;
 	background: url("../images/Contact.jpg") top center;
 	background-size: cover;
 	position: relative;
 	padding: 0;
 }
-#contact h1 {
-	color:#fff;
+#contacts:before {
+	content: "";
+	background: rgba(0, 0, 0, 0.8);
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+#contacts h2 {
+	color: #eee;
+	margin-bottom: 10px 0 0 0;
+	font-size: 22px;
 }
 
 .contact .info {
@@ -932,27 +973,22 @@ section {
 --------------------------------------------------------------*/
 #connexion {
 	width: 100%;
-	height: 100vh;
-	background: url("../images/connexion.avif") top center;
+	height: 40vh;
+	background-color: #000000;
 	background-size: cover;
 	position: relative;
 	padding: 0;
 }
-#connexion h2 {
-	color: #eee;
-	margin-bottom: 10px 0 0 0;
-	font-size: 22px;
+#connexion h1 {
+	margin: 0;
+	font-size: 48px;
+	font-weight: 700;
+	line-height: 56px;
+	color: #fff;
+	font-family: "Poppins", sans-serif;
 }
 
-.connexion:before {
-	content: "";
-	background: rgba(0, 0, 0, 0.8);
-	position: absolute;
-	bottom: 0;
-	top: 0;
-	left: 0;
-	right: 0;
-}
+
 
 .form-connexion
 {
@@ -1000,29 +1036,7 @@ section {
 
 	}
 }
-.sub-connexion {
-	margin: 0 0 0 15px;
-	border: 2px solid #4DE240;
-	color: #0c0b09;
-	border-radius: 50px;
-	padding: 8px 25px;
-	text-transform: uppercase;
-	font-size: 13px;
-	font-weight: 500;
-	letter-spacing: 1px;
-	transition: 0.3s;
-	text-align: center;
-	font-weight: bold;
-}
 
-
-@media (max-width: 992px) {
-	.sub-connexion {
-		margin: 0 15px 0 0;
-		padding: 8px 20px;
-
-	}
-}
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -1134,10 +1148,3 @@ section {
 	padding-top: 30px;
 }
 
-
-
-.avis 
-{
-	background: red;
-	color: black ;
-}

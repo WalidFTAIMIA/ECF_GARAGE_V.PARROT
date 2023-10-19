@@ -15,9 +15,11 @@ class CarsCatalogueController extends AbstractController
     {
         $openingHours = $timesRepo->findAll();
         
+        
         return $this->render('pages/cars/carscatalogue.html.twig', [
             'cars' => $carsRepository->findAll(),
             'openingHours' => $openingHours,
+            
         ]);
     }
 }

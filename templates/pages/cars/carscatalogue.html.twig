@@ -23,6 +23,7 @@
                 <p>Notre gamme des voitures</p>
             </div>
             <div class="row">
+                
                 {% for car in cars %}
                     <div class="col-md-4">
                         <div class="car-wrap rounded">
@@ -33,7 +34,7 @@
                                 </h2>
                                 <div class="d-flex mb-3">
                                     <span class="cat"></span>
-                                    <p class="price ml-auto">{{ car.carsPrice }} €</p>
+                                    <p class="price ml-auto">{{ car.carsPrice | number_format(0, ',', ' ') }} €</p>
                                 </div>
                                 <p class="d-flex mb-0 d-block">
                                     <a href="{{ path('app_contact')}}" class="sub-btn">Contact</a>

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use App\Repository\CarsRepository;
 use App\Repository\TimesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,12 +14,15 @@ class CarsController extends AbstractController
 {
     #[Route('/cars', name: 'app_carscatalogue', methods: ['GET'])]
     public function index(CarsRepository $carsRepository, TimesRepository $timesRepo): Response
-    {
+    {   
+        $data = new SearchData();
+        $form = $this->createForm(SearchForm::class, $data);
         $openingHours = $timesRepo->findAll();
 
         return $this->render('pages/cars/carscatalogue.html.twig', [
             'cars' => $carsRepository->findAll(),
             'openingHours' => $openingHours,
+            'form' => $form->createView()
         ]);
     }
 

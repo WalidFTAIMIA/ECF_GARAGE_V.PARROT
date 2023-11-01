@@ -22,6 +22,11 @@
             <div class="section-title d-flex justify-content-center">
                 <p>Notre gamme des voitures</p>
             </div>
+            <div class="col-md-4">
+                <div class="car-wrap rounded">
+                    {% include 'pages/cars/_filter.html.twig' with {form: form} only %}
+                </div>
+            </div>
             <div class="row">
                 
                 {% for car in cars %}
@@ -30,12 +35,23 @@
                             <img src="/images/{{ car.picture }}" class="img rounded d-flex align-items-end"/>
                             <div class="text">
                                 <h2 class="mb-0">
-                                    <a href="{{ path('app_cars', { 'id': car.id }) }}">{{ car.carsBrand }}</a>
+                                    Modéle : <a href="{{ path('app_cars', { 'id': car.id }) }}">{{ car.carsBrand }}</a>
                                 </h2>
-                                <div class="d-flex mb-3">
-                                    <span class="cat"></span>
-                                    <p class="price ml-auto">{{ car.carsPrice | number_format(0, ',', ' ') }} €</p>
+                                <div class="d-flex justify-content-between ">
+                                    <div class="mb-auto p-2">
+                                        <span class="cat">Prix : </span>
+                                        <p class="price ml-auto"> {{ car.carsPrice | number_format(0, ',', ' ') }} €</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <span class="cat">Kilométrage : </span>
+                                        <p class="km ml-auto"> {{ car.carsKm | number_format(0, ',', ' ') }} KM</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <span class="cat">Année : </span>
+                                        <p class="year ml-auto"> {{ car.carsYear|date('d-m-Y') }}</p>
+                                    </div>
                                 </div>
+                                
                                 <p class="d-flex mb-0 d-block">
                                     <a href="{{ path('app_contact')}}" class="sub-btn">Contact</a>
                                     <a href="{{ path('app_cars', { 'id': car.id }) }}" class="sub-btn">Détails</a>

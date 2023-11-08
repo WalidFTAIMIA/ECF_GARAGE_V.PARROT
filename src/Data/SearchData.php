@@ -4,28 +4,37 @@ namespace App\Data;
 
 class SearchData 
 {
-    /**
-     * @var string
-     */
-    public $q = '';
-
-    /**
-     * @var Category[]
-     */
-    public $categories = [];
+    
+  
 
     /**
      * @var null|integer
      */
-    public $max;
+    public $prixmax;
 
     /**
      * @var null|integer
      */
-    public $min;
+    public $prixmin;
 
     /**
-     * @var boolean
+     * @var null|integer
      */
-    public $promo = false;
+    public $kmmax;
+
+    /**
+     * @var null|integer
+     */
+    public $kmmin;
+
+    /**
+     * @var null|integer
+     */
+    public $yearmax;
+
+    /**
+     * @var null|integer
+     */
+    public $yearmin;
+    
 }

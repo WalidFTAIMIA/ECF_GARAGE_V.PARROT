@@ -1,4 +1,53 @@
-{{  form_start(form, {attr: {class: 'filter'}}) }}
+{{ form_start(form, {attr: {class: 'filter'}}) }}
 
+<div class="filter-wrapper">
+    <!-- Prix -->
+    <div class="filter-section mb-3">
+        <h4 class="text-center">Prix</h4>
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.prixmin) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.prixmax) }}
+            </div>
+        </div>
+        <div id="price-slider" class="mt-2" data-prixmin="{{ prixmin }}" data-prixmax="{{ prixmax }}"></div>
+    </div>
+    
+    <!-- Kilométrage -->
+    <div class="filter-section mb-3">
+        <h4 class="text-center">Kilométrage</h4>
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.kmmin) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.kmmax) }}
+            </div>
+        </div>
+        <div id="km-slider" class="mt-2" data-kmmin="{{ kmmin }}" data-kmmax="{{ kmmax }}"></div>
+    </div>
+    
+    <!-- Année -->
+    <div class="filter-section mb-3">
+        <h4 class="text-center">Année</h4>
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.yearmin) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.yearmax) }}
+            </div>
+        </div>
+        <div id="year-slider" class="mt-2" data-yearmin="{{ yearmin }}" data-yearmax="{{ yearmax }}"></div>
+    </div>
 
+    <div class="row">
+        <div class="col text-center">
+            <button type="submit" class="sub-btn mt-4">Filtrer</button>
+            <button type="reset" class="sub-btn mt-4">Réinitialiser</button>
+        </div>
+    </div>
+</div>
 {{ form_end(form) }}

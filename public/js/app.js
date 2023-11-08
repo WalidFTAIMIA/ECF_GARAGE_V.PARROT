@@ -146,7 +146,7 @@
   new Swiper(".testimonials-slider", {
     speed: 600,
     loop: true,
-    autoplay: { 
+    autoplay: {
       delay: 5000,
       disableOnInteraction: false,
     },
@@ -180,6 +180,83 @@
       mirror: false,
     });
   });
+
+  const sliderprice = document.getElementById("price-slider");
+  if (sliderprice) {
+      const prixmin = document.getElementById("prixmin");
+      const prixmax = document.getElementById("prixmax");
   
+      const prixminValue = Math.floor(parseInt(sliderprice.dataset.prixmin, 10) / 10) * 10;
+      const prixmaxValue = Math.ceil(parseInt(sliderprice.dataset.prixmax, 10) / 10) * 10;
+      
+      noUiSlider.create(sliderprice, {
+        start: [prixmin.value || prixminValue, prixmax.value || prixmaxValue],
+        connect: true,
+        step: 10,
+        range: {
+            'min': prixminValue,
+            'max': prixmaxValue
+        }
+    })
+    .on('slide', function (values,handle){
+      if(handle === 0){
+        prixmin.value = Math.round(values[0])
+      }
+      if(handle === 1){
+        prixmax.value = Math.round(values[1])
+      }
+    })
+  }
   
+  const sliderkm = document.getElementById("km-slider");
+if (sliderkm) {
+    const kmmin = document.getElementById("kmmin");
+    const kmmax = document.getElementById("kmmax");
+
+    const kmminValue = Math.floor(parseInt(sliderkm.dataset.kmmin, 10) / 1000) * 1000;
+    const kmmaxValue = Math.ceil(parseInt(sliderkm.dataset.kmmax, 10) / 1000) * 1000;
+
+    noUiSlider.create(sliderkm, {
+        start: [kmmin.value || kmminValue, kmmax.value || kmmaxValue],
+        connect: true,
+        step: 1000,
+        range: {
+            'min': kmminValue,
+            'max': kmmaxValue
+        }
+    }).on('slide', function (values, handle) {
+        if(handle === 0){
+            kmmin.value = Math.round(values[0]);
+        }
+        if(handle === 1){
+            kmmax.value = Math.round(values[1]);
+        }
+    });
+}
+const sliderYear = document.getElementById("year-slider");
+if (sliderYear) {
+    const yearmin = document.getElementById("yearmin");
+    const yearmax = document.getElementById("yearmax");
+
+    const yearminValue = parseInt(sliderYear.dataset.yearmin, 10);
+    const yearmaxValue = parseInt(sliderYear.dataset.yearmax, 10);
+
+    noUiSlider.create(sliderYear, {
+        start: [yearmin.value || yearminValue, yearmax.value || yearmaxValue],
+        connect: true,
+        step: 1, 
+        range: {
+            'min': yearminValue,
+            'max': yearmaxValue
+        }
+    }).on('slide', function (values, handle) {
+        if (handle === 0){
+            yearmin.value = Math.round(values[0]);
+        }
+        if (handle === 1){
+            yearmax.value = Math.round(values[1]);
+        }
+    });
+}
+
 })();

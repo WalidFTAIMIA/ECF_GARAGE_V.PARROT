@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CarsController extends AbstractController
 {
@@ -31,6 +32,13 @@ class CarsController extends AbstractController
         );
         $openingHours = $timesRepo->findAll();
 
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('pages/cars/cars_list.html.twig', [
+                'cars' => $pagination
+                ])
+            ]);
+        }
         return $this->render('pages/cars/carscatalogue.html.twig', [
             'cars' => $pagination,
             'openingHours' => $openingHours,
@@ -60,4 +68,5 @@ class CarsController extends AbstractController
             'openingHours' => $openingHours
         ]);
     }
+    
 }

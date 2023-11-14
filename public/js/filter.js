@@ -7,6 +7,9 @@ class Filter {
     }
     this.form = element.querySelector('.js-filter-form');
     this.content = element.querySelector('.js-filter-content');
+    this.priceSlider = null;
+    this.kmSlider = null;
+    this.yearSlider = null;
     this.bindEvents();
     this.initSliders();
   }
@@ -78,25 +81,33 @@ class Filter {
     const minRangeValue = parseInt(sliderElement.dataset[minInputId], 10);
     const maxRangeValue = parseInt(sliderElement.dataset[maxInputId], 10);
 
-    noUiSlider.create(sliderElement, {
-      start: [minValue || minRangeValue, maxValue || maxRangeValue],
-      connect: true,
-      step: step,
-      range: {
-        'min': minRangeValue,
-        'max': maxRangeValue
-      }
-    });
+    if (!this[sliderId]) {
+      noUiSlider.create(sliderElement, {
+        start: [minValue || minRangeValue, maxValue || maxRangeValue],
+        connect: true,
+        step: step,
+        range: {
+          'min': minRangeValue,
+          'max': maxRangeValue
+        }
+      });
 
-    sliderElement.noUiSlider.on('slide', function (values, handle) {
-      if (handle === 0) {
-        minValueElement.value = Math.round(values[0]);
-      } else {
-        maxValueElement.value = Math.round(values[1]);
-      }
-    });
+      sliderElement.noUiSlider.on('slide', function (values, handle) {
+        if (handle === 0) {
+          minValueElement.value = Math.round(values[0]);
+        } else {
+          maxValueElement.value = Math.round(values[1]);
+        }
+      });
 
-    sliderElement.noUiSlider.on('end', () => filter.loadForm());
+      sliderElement.noUiSlider.on('end', () => this.loadForm());
+
+      this[sliderId] = sliderElement.noUiSlider;
+    } else {
+      this[sliderId].updateOptions({
+        start: [minValue || minRangeValue, maxValue || maxRangeValue]
+      });
+    }
   }
 }
 

@@ -43,6 +43,9 @@ class Cars
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $descriptionCars = null;
 
+    #[ORM\ManyToOne(targetEntity: CarsCatalogue::class, inversedBy: 'cars')]
+    private ?CarsCatalogue $carscatalogue = null;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
@@ -178,6 +181,17 @@ class Cars
         $this->descriptionCars = $descriptionCars;
 
         return $this;
+    }
+    public function setCarscatalogue(?CarsCatalogue $carscatalogue): self
+    {
+        $this->carscatalogue = $carscatalogue;
+
+        return $this;
+    }
+
+    public function getCarscatalogue(): ?CarsCatalogue
+    {
+        return $this->carscatalogue;
     }
 
     

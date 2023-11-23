@@ -30,9 +30,6 @@ class CarsCrudController extends AbstractCrudController
             TextField::new('carsbrand', 'Marque'),
             TextField::new('carsmodel', 'Model'),
             NumberField::new('carskm'),
-            // ImageField::new('carspicture','Image')
-            //     ->setBasePath('images')
-            //     ->setUploadDir('public/images'),
             MoneyField::new('carsprice','Prix')
                 ->setCurrency('EUR'),
             DateField::new('carsyear','Année'),

@@ -1,5 +1,4 @@
 let filter;
-
 class Filter {
   constructor(element) {
     if (element === null) {
@@ -13,7 +12,6 @@ class Filter {
     this.bindEvents();
     this.initSliders();
   }
-
   bindEvents() {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
@@ -25,7 +23,6 @@ class Filter {
       resetBtn.addEventListener('click', () => this.resetForm());
     }
   }
-
   async loadForm(ignoreFilters = false) {
     let url;
     if (ignoreFilters) {
@@ -46,7 +43,6 @@ class Filter {
         'X-Requested-With': 'XMLHttpRequest'
       }
     });
-
     if (response.ok) {
       const data = await response.json();
       this.content.innerHTML = data.content;
@@ -54,13 +50,11 @@ class Filter {
       console.error(response);
     }
   }
-
   resetForm() {
     this.initSliders(true);
     this.form.reset();
     this.loadForm(true); // Charger sans filtres
   }
-
   initSliders(reset = false) {
     // Initialisation ou réinitialisation des sliders
     this.initializeSlider('price-slider', 'prixmin', 'prixmax', reset);

@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Connexion
+{% block title %}
+	Connexion
 {% endblock %}
-
 {% block body %}
 	<!-- ======= accueil Section ======= -->
 	<section id="connexion" class="d-flex align-items-center">
@@ -11,41 +10,49 @@
 				<div class="d-felx text-center">
 					<h1>
 						Espace réservé au personnel de garage
+
 					</h1>
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<section class="connexion">
 		<div class="container" data-aos="fade-up">
 			<div class="section-title">
-				<p class="text-center">Connexion</p>
+				<p class="text-center">
+					Connexion
+				</p>
 			</div>
 		</div>
-
 		<div class="container cnx d-flex  align-items-center">
 			<div class="row" data-aos="zoom-in" data-aos-delay="100">
 				<div class="container-fluid">
 					{% if error %}
-						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						<div class="alert alert-danger">
+							{{ error.messageKey|trans(error.messageData, 'security') }}
+						</div>
 					{% endif %}
-
 					{% if app.user %}
 						<div class="mb-3">
 							Vous êtes connecté(e) comme
 							{{ app.user.userIdentifier }},
-							<a href="{{ path('app_logout') }}">Me déconnecter</a>
+							<a href="{{ path('app_logout') }}">
+								Me déconnecter
+							</a>
 						</div>
 					{% endif %}
 					<form method="post" class="form-connexion">
 						<div class="form-outline mb-4">
 							<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control form-control-lg" placeholder="Votre adresse mail" autocomplete="email" required autofocus>
-							<label class="form-label" for="inputEmail">Email</label>
+							<label class="form-label" for="inputEmail">
+								Email
+							</label>
 						</div>
 						<div class="form-outline mb-3">
 							<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Votre mot de passe " required>
-							<label for="inputPassword" class="form-label">Mot de passe</label>
+							<label for="inputPassword" class="form-label">
+								Mot de passe
+							</label>
 						</div>
 						{% if csrf_token('authenticate') %}
 							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
@@ -59,7 +66,5 @@
 				</div>
 			</div>
 		</div>
-
 	</section>
-
 {% endblock %}

@@ -549,28 +549,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Gallery
---------------------------------------------------------------*/
-.gallery .gallery-item {
-	overflow: hidden;
-	border-right: 3px solid #454035;
-	border-bottom: 3px solid #454035;
-
-}
-
-.gallery .gallery-item img {
-	transition: all ease-in-out 0.4s;
-	width: 100%;
-	height: 100%;
-	display: block;
-
-}
-
-.gallery .gallery-item:hover img {
-	transform: scale(1.1);
-}
-
-/*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
 .testimonials
@@ -988,7 +966,11 @@ section {
 	font-family: "Poppins", sans-serif;
 }
 
-
+@media (max-width: 768px) {
+    #connexion h1 {
+        font-size: 24px;
+	}
+}
 
 .form-connexion
 {
@@ -1008,6 +990,7 @@ section {
 	.h-custom {
 	height: 100%;
 	}
+
 	}
 .sub-connexion {
 	margin: 0 0 0 15px;
